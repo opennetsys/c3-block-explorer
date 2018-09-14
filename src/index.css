@@ -1,5 +1,61 @@
-body {
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
 }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: white;
+  color: #222;
+}
+/* global font */
+body,
+input {
+  font-family: "Myriad Pro", "Myriad", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+strong {
+  font-weight: bold;
+}
+p {
+  font-size: 0.7em;
+  line-height: 1.6;
+}
+a {
+  color: #3e919a;
+  transition: all 0.2s ease-out;
+}
+a:hover {
+  color: #4eabb5;
+  text-decoration: underline;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.6em;
+}
+h4 {
+  font-size: 1.4em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1em;
+}
+

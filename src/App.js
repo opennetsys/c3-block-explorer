@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import './lib/rpc'
+import styled from 'styled-components';
+import Header from './Header';
+import Footer from './Footer';
+import BlocksView from './BlocksView';
 
+const UI = {
+  App: styled.div`
+    min-width: 600px;
+  `,
+}
+
+// NOTE: footer is outside of App component so that it can be sticked to bottom of page
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      [
+      <UI.App>
+        <Header />
+        <BlocksView />
+      </UI.App>,
+      <Footer />
+      ]
     );
   }
 }

@@ -12,7 +12,6 @@ app.use(require('body-parser')());
 
 app.post('/', async (req, res) => {
   const data = req.body
-  console.log(data)
   try {
     const ans = await client.send(data)
     res.send({data: ans.result})

@@ -1,15 +1,11 @@
+# Work in Progress
+
 # C3 Block Explorer
 
 > A block explorer for C3
 
-Example demo chain
-
-```bash
-make
-```
-
-[http://c3labs.io:9001/ipfs/QmVLJUCVKK7XojR74azzuBay1F1THrNskvD7aiqrvg1o3S](http://c3labs.io:9001/ipfs/QmVLJUCVKK7XojR74azzuBay1F1THrNskvD7aiqrvg1o3S)
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## License
 
-Apache 2.0
+[GNU AGPL 3.0](LICENSE)
