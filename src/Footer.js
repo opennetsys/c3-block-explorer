@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
 const UI = {
   Footer: styled.footer`
@@ -31,15 +31,15 @@ const UI = {
 }
 
 class View extends Component {
-  render() {
+  render () {
     return (
       <UI.Footer>
         <UI.FooterInner>
           <UI.Copyright>© 2018 C3 Labs</UI.Copyright>
         </UI.FooterInner>
       </UI.Footer>
-    );
+    )
   }
 }
 
-export default View;
+export default View

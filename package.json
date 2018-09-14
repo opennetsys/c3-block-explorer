@@ -27,5 +27,17 @@
   },
   "devDependencies": {
     "standard": "^12.0.1"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it",
+      "assert",
+      "fetch"
+    ]
   }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import _ from 'lodash';
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import _ from 'lodash'
 import toBuffer from 'typedarray-to-buffer'
 import {request} from './lib/api'
 import {BlockResponse} from './pb/c3_pb'
@@ -40,11 +40,11 @@ const UI = {
     font-weight: bold;
     background: #eaeaea;
     padding: 0.2em;
-  `,
+  `
 }
 
 class View extends Component {
-  constructor() {
+  constructor () {
     super()
 
     this.state = {
@@ -52,12 +52,12 @@ class View extends Component {
     }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     this.update()
     setInterval(() => this.update(), 5e3)
   }
 
-  render() {
+  render () {
     const blocks = (this.state.recentBlocks || []).map((block, i) => {
       return (
         <UI.TR key={block.hash}>
@@ -92,17 +92,17 @@ class View extends Component {
           </UI.Table>
         </UI.TableContainer>
       </UI.Container>
-    );
+    )
   }
 
-  async update() {
+  async update () {
     const blocks = await this.fetchBlocks()
     this.setState({
       recentBlocks: blocks
     })
   }
 
-  async fetchLatestBlockNumber() {
+  async fetchLatestBlockNumber () {
     const payload = {
       jsonrpc: '2.0',
       id: 1,
@@ -115,19 +115,19 @@ class View extends Component {
     return bufferHex2Int(buf)
   }
 
-  async fetchBlocks() {
+  async fetchBlocks () {
     const latestBlockNumber = await this.fetchLatestBlockNumber()
     const promises = []
-    for (let i = latestBlockNumber; i > latestBlockNumber-20; i--) {
+    for (let i = latestBlockNumber; i > latestBlockNumber - 20; i--) {
       promises.push(this.fetchBlock(i))
     }
 
     return Promise.all(promises).then(x => {
-      return _.orderBy(x, (a, b) => a > b);
+      return _.orderBy(x, (a, b) => a > b)
     })
   }
 
-  async fetchBlock(blockNumber) {
+  async fetchBlock (blockNumber) {
     const payload = {
       jsonrpc: '2.0',
       id: 1,
@@ -144,9 +144,9 @@ class View extends Component {
       timestamp: block.getBlocktime(),
       nonce: block.getNonce(),
       stateBlocksMerkleHash: block.getStateblocksmerklehash(),
-      prevBlockHash: block.getPrevblockhash(),
+      prevBlockHash: block.getPrevblockhash()
     }
   }
 }
 
-export default View;
+export default View

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
 const UI = {
   Header: styled.header`
@@ -33,18 +33,18 @@ const UI = {
 }
 
 class View extends Component {
-  render() {
+  render () {
     return (
       <UI.Header>
         <UI.HeaderInner>
-          <UI.TitleLink href="/">
-            <UI.Logo src="/images/c3-logo.svg" alt="logo" />
+          <UI.TitleLink href='/'>
+            <UI.Logo src='/images/c3-logo.svg' alt='logo' />
             <UI.Title>C3 Block Explorer</UI.Title>
           </UI.TitleLink>
         </UI.HeaderInner>
       </UI.Header>
-    );
+    )
   }
 }
 
-export default View;
+export default View
