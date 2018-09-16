@@ -5,6 +5,9 @@ all: gen
 start:
 	@npm start
 
+.PHONY: run
+run: start
+
 .PHONY: gen
 gen:
 	@./gen.sh
@@ -20,3 +23,7 @@ cp/grpc/web:
 	@cp ../c3-go/rpc/pb/c3.proto src/pb/
 	@cp ../c3-go/tmp/* pb/
 	@cp ../c3-go/tmp/* src/pb/
+
+.PHONY: run/proxy
+run/proxy:
+	@node proxy/server.js

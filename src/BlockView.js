@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import _ from 'lodash'
 import toBuffer from 'typedarray-to-buffer'
 import {request} from './lib/api'
 import {BlockResponse, ErrorResponse} from './pb/c3_pb'
-import {bufferHex2Int, hex2Int, int2Hex} from './util'
+import {hex2Int, int2Hex} from './util'
 
 const UI = {
   Container: styled.div`

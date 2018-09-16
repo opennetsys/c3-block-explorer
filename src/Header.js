@@ -12,7 +12,7 @@ const UI = {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
   `,
   Title: styled.h1`
     display: inline-block;
@@ -32,7 +32,16 @@ const UI = {
     width: 40px;
     height: auto;
     margin-right: 1em;
-  `
+  `,
+  GithubLink: styled.a`
+    display: inline-block;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    :hover {
+      text-decoration: underline;
+    }
+  `,
 }
 
 class View extends Component {
@@ -44,6 +53,12 @@ class View extends Component {
             <UI.Logo src='/images/c3-logo.svg' alt='logo' />
             <UI.Title>C3 Block Explorer</UI.Title>
           </UI.TitleLink>
+          <UI.GithubLink
+            href="https://github.com/c3systems/c3-block-explorer"
+            target="_blank"
+            rel="noopener noreferrer">
+            Source code
+          </UI.GithubLink>
         </UI.HeaderInner>
       </UI.Header>
     )
