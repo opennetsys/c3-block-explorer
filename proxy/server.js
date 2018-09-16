@@ -3,7 +3,9 @@ const caller = require('grpc-caller')
 const express = require('express')
 
 const PROTO_PATH = path.resolve(__dirname, '../src/pb/c3.proto')
-const client = caller('0.0.0.0:5005', PROTO_PATH, 'C3Service')
+// rpc host is the c3-go node rpc port
+const RPC_HOST = process.env.RPC_HOST || '127.0.0.1:5005'
+const client = caller(RPC_HOST, PROTO_PATH, 'C3Service')
 
 const app = express()
 app.use(require('cors')())
@@ -20,5 +22,6 @@ app.post('/', async (req, res) => {
   }
 })
 
+// the port to expose for the frontend to connect
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Listening on port ${port}`))

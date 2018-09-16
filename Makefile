@@ -3,10 +3,22 @@ all: gen
 
 .PHONY: start
 start:
-	@npm start
+	@API_HOST="$(API_HOST)" npm start
 
 .PHONY: run
 run: start
+
+.PHONY: build
+build:
+	@npm run build
+
+.PHONY: build/docker
+build/docker:
+	@docker build -t c3blockexplorer .
+
+.PHONY: run/docker
+run/docker:
+	@docker run -p 9090:3000 -p 5000:5000 -t c3blockexplorer
 
 .PHONY: gen
 gen:
@@ -26,4 +38,10 @@ cp/grpc/web:
 
 .PHONY: run/proxy
 run/proxy:
-	@node proxy/server.js
+	@RPC_HOST="$(RPC_HOST)" node proxy/server.js
+
+# proxy localhost to 123.123.123.123 required so that docker container can communicate with host machine
+.PHONY: localhostproxy
+localhostproxy:
+	@sudo ifconfig $$(ifconfig | grep LOOPBACK | awk '{print $1}' | sed -E 's/[^a-zA-Z0-9]+//g') 123.123.123.123/24
+	#@sudo ifconfig lo0 123.123.123.123/24
