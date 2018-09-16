@@ -32,62 +32,76 @@ const UI = {
   `,
   TD: styled.td`
     padding: 0.2em;
-    max-width: 100px;
     text-overflow: ellipsis;
     overflow: hidden;
+    :first-child {
+      min-width: 200px;
+      font-weight: bold;
+      background: #eaeaea;
+      padding: 0.2em;
+    }
   `,
   TH: styled.th`
-    font-weight: bold;
-    background: #eaeaea;
-    padding: 0.2em;
   `
 }
 
 class View extends Component {
-  constructor () {
+  constructor (props) {
     super()
+    const {blockNumber} = props.match.params
 
     this.state = {
-      recentBlocks: null
+      block: null,
+      blockNumber
     }
   }
 
   async componentDidMount () {
     this.update()
-    setInterval(() => this.update(), 5e3)
+    setInterval(() => this.update(), 60e3)
   }
 
   render () {
-    const blocks = (this.state.recentBlocks || []).map((block, i) => {
-      return (
-        <UI.TR key={block.hash}>
-          <UI.TD><a href={`/blocks/${block.number}`}>{block.hash}</a></UI.TD>
-          <UI.TD><a href={`/blocks/${block.number}`}>{block.number}</a></UI.TD>
-          <UI.TD>{block.timestamp}</UI.TD>
-          <UI.TD>{block.nonce}</UI.TD>
-          <UI.TD>{block.stateBlocksMerkleHash}</UI.TD>
-          <UI.TD>{block.prevBlockHash}</UI.TD>
-        </UI.TR>
-      )
-    })
+    const { block, blockNumber } = this.state
 
     return (
       <UI.Container>
-        <UI.Title>Recent Blocks</UI.Title>
+        <UI.Title>Block <strong>#{blockNumber || '-'}</strong></UI.Title>
         <UI.TableContainer>
           <UI.Table>
-            <UI.THead>
-              <UI.TR>
-                <UI.TH>Hash</UI.TH>
-                <UI.TH>Number</UI.TH>
-                <UI.TH>Timestamp</UI.TH>
-                <UI.TH>Nonce</UI.TH>
-                <UI.TH>State Blocks Merkle Hash</UI.TH>
-                <UI.TH>Prev Block Hash</UI.TH>
-              </UI.TR>
-            </UI.THead>
             <UI.TBody>
-              {blocks}
+              <UI.TR>
+                <UI.TD>Hash</UI.TD>
+                <UI.TD>{block ? block.hash : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Number</UI.TD>
+                <UI.TD>{block ? block.number : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Timestamp</UI.TD>
+                <UI.TD>{block ? block.timestamp : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Nonce</UI.TD>
+                <UI.TD>{block ? block.nonce : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>State Blocks Merkle Hash</UI.TD>
+                <UI.TD>{block ? block.stateBlocksMerkleHash : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Prev Block Hash</UI.TD>
+                <UI.TD>{block ? block.prevBlockHash : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Miner</UI.TD>
+                <UI.TD>{block ? block.miner : '-'}</UI.TD>
+              </UI.TR>
+              <UI.TR>
+                <UI.TD>Difficulty</UI.TD>
+                <UI.TD>{block ? block.difficulty : '-'}</UI.TD>
+              </UI.TR>
             </UI.TBody>
           </UI.Table>
         </UI.TableContainer>
@@ -96,47 +110,16 @@ class View extends Component {
   }
 
   async update () {
+    const {blockNumber} = this.state
+
     try {
-      const blocks = await this.fetchBlocks()
+      const block = await this.fetchBlock(blockNumber)
       this.setState({
-        recentBlocks: blocks
+        block
       })
     } catch (err) {
       console.error(err)
     }
-  }
-
-  async fetchLatestBlockNumber () {
-    const payload = {
-      jsonrpc: '2.0',
-      id: 1,
-      method: 'c3_latestBlock',
-      params: []
-    }
-
-    const json = await request(payload)
-    if (!json.data) {
-      throw new Error('value empty')
-    }
-
-    const buf = toBuffer(json.data.value.data)
-    return bufferHex2Int(buf)
-  }
-
-  async fetchBlocks () {
-    const latestBlockNumber = await this.fetchLatestBlockNumber()
-    const promises = []
-    let min = latestBlockNumber - 20
-    if (min < 0) {
-      min = 0
-    }
-    for (let i = latestBlockNumber; i > min; i--) {
-      promises.push(this.fetchBlock(i))
-    }
-
-    return Promise.all(promises).then(x => {
-      return _.orderBy(x.filter(x => x), (a, b) => a > b)
-    })
   }
 
   async fetchBlock (blockNumber) {
@@ -168,7 +151,9 @@ class View extends Component {
       timestamp: block.getBlocktime(),
       nonce: block.getNonce(),
       stateBlocksMerkleHash: block.getStateblocksmerklehash(),
-      prevBlockHash: block.getPrevblockhash()
+      prevBlockHash: block.getPrevblockhash(),
+      miner: block.getMineraddress(),
+      difficulty: block.getDifficulty()
     }
   }
 }

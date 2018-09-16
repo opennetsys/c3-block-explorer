@@ -21,6 +21,11 @@ message Response {
   google.protobuf.Any result = 3;
 }
 
+message ErrorResponse {
+  uint64 code = 1;
+  string message = 2;
+}
+
 message PingResponse {
   string data = 1;
 }

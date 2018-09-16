@@ -15,6 +15,7 @@
     "lodash": "^4.17.11",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "styled-components": "^3.4.6",
     "typedarray-to-buffer": "^3.1.5"

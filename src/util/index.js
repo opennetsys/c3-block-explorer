@@ -4,7 +4,7 @@ export function bufferHex2Int (buf) {
 }
 
 export function int2Hex (n) {
-  return '0x' + n.toString(16)
+  return '0x' + ((+n).toString(16))
 }
 
 export function hex2Int (hex) {

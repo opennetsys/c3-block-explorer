@@ -24,6 +24,9 @@ const UI = {
     text-decoration: none;
     display: flex;
     align-items: center;
+    :hover {
+      text-decoration: none;
+    }
   `,
   Logo: styled.img`
     width: 40px;

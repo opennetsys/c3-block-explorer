@@ -13,6 +13,7 @@ app.post('/', async (req, res) => {
   const data = req.body
   try {
     const ans = await client.send(data)
+		console.log(ans)
     res.send({data: ans.result})
   } catch (err) {
     res.json({error: err})
