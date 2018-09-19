@@ -18,7 +18,7 @@ build/docker:
 
 .PHONY: run/docker
 run/docker:
-	@docker run -p 9090:3000 -p 5000:5000 -t c3blockexplorer
+	@docker run -p 9090:3000 -p 5010:5010 -t c3blockexplorer
 
 .PHONY: gen
 gen:

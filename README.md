@@ -29,7 +29,11 @@ make build
 ### Docker
 
 ```bash
-make docker/build
+make build/docker
+```
+
+```bash
+make run/docker
 ```
 
 ## License

@@ -23,5 +23,5 @@ app.post('/', async (req, res) => {
 })
 
 // the port to expose for the frontend to connect
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5010
 app.listen(port, () => console.log(`Listening on port ${port}`))
