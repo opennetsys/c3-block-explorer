@@ -33,11 +33,11 @@ p {
   line-height: 1.6;
 }
 a {
-  color: #3e919a;
+  color: #4A90E2;
   transition: all 0.2s ease-out;
 }
 a:hover {
-  color: #4eabb5;
+  color: #4481ca;
   text-decoration: underline;
 }
 h1 {

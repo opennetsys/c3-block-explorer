@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const UI = {
   Footer: styled.footer`
-    background: #122e30;
+    background: #4A90E2;
     color: #fff;
     padding: 1em;
     min-height: 100px;

@@ -54,7 +54,7 @@ class View extends Component {
 
   async componentDidMount () {
     this.update()
-    setInterval(() => this.update(), 5e3)
+    setInterval(() => this.update(), 20e3)
   }
 
   render () {

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const UI = {
   Header: styled.header`
-    background: #122e30;
+    background: #0590ea;
     color: #fff;
     padding: 1em;
   `,
@@ -29,7 +29,7 @@ const UI = {
     }
   `,
   Logo: styled.img`
-    width: 40px;
+    width: 60px;
     height: auto;
     margin-right: 1em;
   `,
@@ -38,8 +38,10 @@ const UI = {
     text-decoration: none;
     display: flex;
     align-items: center;
+    color: #fff;
     :hover {
       text-decoration: underline;
+      color: #fff;
     }
   `,
 }
@@ -50,8 +52,8 @@ class View extends Component {
       <UI.Header>
         <UI.HeaderInner>
           <UI.TitleLink href='/'>
-            <UI.Logo src='/images/c3-logo.svg' alt='logo' />
-            <UI.Title>C3 Block Explorer (POC)</UI.Title>
+            <UI.Logo src='/images/c3logo.png' alt='logo' />
+            <UI.Title>Block Explorer (POC)</UI.Title>
           </UI.TitleLink>
           <UI.GithubLink
             href="https://github.com/c3systems/c3-block-explorer"
