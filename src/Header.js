@@ -51,7 +51,7 @@ class View extends Component {
         <UI.HeaderInner>
           <UI.TitleLink href='/'>
             <UI.Logo src='/images/c3-logo.svg' alt='logo' />
-            <UI.Title>C3 Block Explorer</UI.Title>
+            <UI.Title>C3 Block Explorer (POC)</UI.Title>
           </UI.TitleLink>
           <UI.GithubLink
             href="https://github.com/c3systems/c3-block-explorer"

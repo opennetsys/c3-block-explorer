@@ -20,6 +20,10 @@ build/docker:
 run/docker:
 	@docker run -p 9090:3000 -p 5010:5010 -t c3blockexplorer
 
+.PHONY: run/docker/detached
+run/docker/detached:
+	@docker run -p 9090:3000 -p 5010:5010 -t c3blockexplorer -d
+
 .PHONY: gen
 gen:
 	@./gen.sh
